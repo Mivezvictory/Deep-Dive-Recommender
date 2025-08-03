@@ -102,10 +102,17 @@ Create a `local.settings.json` at the project root with:
 1. **Start the Functions host**
 
    ```bash
-   cd PlaylistRecommender
-   func start 
+    cd server
+    func start 
    ```
+2. **Launch the React app**
 
+   ```bash
+    cd client
+    npm install
+    npm run dev    # or npm start
+   ```
+3. Open your browser to https://localhost:5173, search for an artist, and hit Deep-Dive.
 ---
 
 
