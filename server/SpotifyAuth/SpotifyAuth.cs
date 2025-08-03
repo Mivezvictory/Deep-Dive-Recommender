@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace SpotifyWebApp;
+namespace Deep_Dive_Recommender;
 
 public class SpotifyAuth
 {
@@ -15,9 +15,34 @@ public class SpotifyAuth
     }
 
     [Function("SpotifyAuth")]
-    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "spotify-auth")] HttpRequest req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
-        return new OkObjectResult("Welcome to Azure Functions!");
+
+        try
+        {
+            //constants
+            String? SPOTIFY_REDIRECT_URI = Environment.GetEnvironmentVariable("SPOTIFY_REDIRECT_URI");
+            String SCOPES = "user-top-read playlist-read-private";
+
+            var cliendID = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
+            var redirectUri = Uri.EscapeDataString(SPOTIFY_REDIRECT_URI!);
+            var scopes = Uri.EscapeDataString(SCOPES);
+
+            var authUrl = $"https://accounts.spotify.com/authorize" +
+                          $"?response_type=code" +
+                          $"&client_id={cliendID}" +
+                          $"&scope={scopes}" +
+                          $"&redirect_uri={redirectUri}";
+
+            //var response = req.CreateResponse(HttpStatusCode.Redirect);
+            return new RedirectResult(authUrl);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogInformation(ex.Message);
+            return new BadRequestObjectResult(ex.Message);
+        }
+        
     }
 }
