@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace SpotifyWebApp;
+namespace Deep_Dive_Recommender;
 
 public class DeepDiveRecommender
 {

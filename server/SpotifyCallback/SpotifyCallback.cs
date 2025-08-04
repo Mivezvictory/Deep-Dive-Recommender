@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace SpotifyWebApp;
+namespace Deep_Dive_Recommender;
 
-public class SpotifyAuth
+public class SpotifyCallback
 {
-    private readonly ILogger<SpotifyAuth> _logger;
+    private readonly ILogger<SpotifyCallback> _logger;
 
-    public SpotifyAuth(ILogger<SpotifyAuth> logger)
+    public SpotifyCallback(ILogger<SpotifyCallback> logger)
     {
         _logger = logger;
     }
 
-    [Function("SpotifyAuth")]
+    [Function("SpotifyCallback")]
     public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
