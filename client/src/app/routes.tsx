@@ -1,9 +1,9 @@
 import { useAuth } from '../providers/AuthProvider';
-import LoginPageAI from '../pages/LoginPageAI';
+import LoginPageAlt from '../pages/LoginPageAlt';
 import { LoginPage } from '../pages/LoginPage';
 import ExplorePage from '../pages/ExplorePage';
 
 export function useRoutesElement() {
   const { isAuthed } = useAuth();
-  return isAuthed ? <ExplorePage /> : <LoginPageAI />;
+  return isAuthed ? <ExplorePage /> : <LoginPageAlt />;
 }

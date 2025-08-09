@@ -1,7 +1,7 @@
 import { Button, Stack, Typography } from '@mui/material';
 import { useAuth } from '../providers/AuthProvider';
 
-export default function LoginPageAI() {
+export default function LoginPageAlt() {
   const { login } = useAuth();
   return (
     <Stack alignItems="center" justifyContent="center" spacing={3} sx={{ minHeight: '70vh', textAlign: 'center' }}>
