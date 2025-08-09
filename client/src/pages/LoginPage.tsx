@@ -9,7 +9,7 @@ export function LoginPage() {
   return (
     <Box
         sx={{
-        position: 'fixed', // changed from 'relative' to 'fixed'
+        position: 'relative', // changed from 'relative' to 'fixed'
         left: 0,
         top: 0,
         width: '100vw',
@@ -63,9 +63,7 @@ export function LoginPage() {
           alt="Deep-Dive Logo"
           sx={{ width: { xs: 80, sm: 128 }, mb: 3 }}
         />
-        <Typography component="h1" variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
-          Deep-Dive Recommender
-        </Typography>
+        <Typography variant="h3" fontWeight={700}>Deep-Dive Recommender</Typography>nder
         <Button
           fullWidth
           variant="contained"

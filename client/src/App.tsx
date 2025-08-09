@@ -1,9 +1,8 @@
-import './App.css'
-import { LoginPage } from './pages/LoginPage'
+import AppLayout from './components/AppLayout';
+import { useRoutesElement } from './app/routes';
 
-function App() {
-  return (
-    <LoginPage/>
-  )
+export function App() {
+  const element = useRoutesElement();
+  return <AppLayout>{element}</AppLayout>;
 }
-export default App
+
