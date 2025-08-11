@@ -24,7 +24,7 @@ namespace Deep_Dive_Recommender.FunctionHelpers
                 "notfound" => (int)HttpStatusCode.NotFound,
                 "redirect" => (int)HttpStatusCode.Redirect,
                 "internalservererror" => (int)HttpStatusCode.InternalServerError
-            }; 
+            };
         }
     }
 }
