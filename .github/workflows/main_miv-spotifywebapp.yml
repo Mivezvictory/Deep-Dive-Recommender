@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - feat/imp-callback-function
   workflow_dispatch:
 
 env:
