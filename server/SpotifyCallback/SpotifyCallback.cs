@@ -59,8 +59,11 @@ public class SpotifyCallback
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (tokens is null || string.IsNullOrEmpty(tokens.AccessToken))
+            {
+                _logger.LogError("Token JSON missing access_token. Raw body: {Body}", body);
                 return new BadRequestObjectResult("Invalid token response from Spotify.");
-             // TODO: persist tokens (userId, access, refresh, expires) in Cosmos DB
+                // TODO: persist tokens (userId, access, refresh, expires) in Cosmos DB
+            }
 
             var state = req.Query["state"];
             var dest = FunctionHelper.CombineUrl(clientAppUrl, string.IsNullOrWhiteSpace(state) ? "" : state);
