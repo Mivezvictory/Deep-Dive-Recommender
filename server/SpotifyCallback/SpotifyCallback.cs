@@ -72,7 +72,7 @@ public class SpotifyCallback
         catch (Exception ex)
         {
             _logger.LogError(ex.Message);
-            returnObj = FunctionReturnHelpers.CreateReturnResponse(ex.Message, "400");
+            returnObj = FunctionReturnHelpers.CreateReturnResponse(ex.Message, "badrequest");
             return returnObj;
         }
        

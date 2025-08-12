@@ -1,7 +1,7 @@
 import { Box, Container, Button, Typography, CssBaseline } from '@mui/material';
 
 export function LoginPage() {
-  const apiBase = import.meta.env.VITE_API_BASE_URL;
+  //const apiBase = import.meta.env.VITE_API_BASE_URL;
   const handleLogin = () => {
     //window.location.href = `${apiBase}/spotify-auth`;
   };
