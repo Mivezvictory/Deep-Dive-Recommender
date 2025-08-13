@@ -11,19 +11,19 @@ import { LoginButton } from '../components/LoginButton';
 export function LoginPage() {
   return (
     <ThemeProvider theme={{theme}}>
-      <Box sx={{LOGIN_PAGE_STYLING}}>
+      <Box sx={LOGIN_PAGE_STYLING}>
         <CssBaseline />
 
         {/* Semi-transparent overlay */}
         <Box
-          sx={{SEMI_TRANSPARENT_OVERLAY}}/>
+          sx={SEMI_TRANSPARENT_OVERLAY}/>
 
         {/* Sign-in Card Container */}
         <Container
           component="main"
           maxWidth="xs"
           disableGutters
-          sx={{SINGIN_CARD_STYLING}}
+          sx={SINGIN_CARD_STYLING}
         >
           <Box
             component="img"
