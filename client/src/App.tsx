@@ -1,8 +1,10 @@
-import AppLayout from './components/AppLayout';
+//import AppLayout from './components/AppLayout';
 import { useRoutesElement } from './app/routes';
 
 export function App() {
   const element = useRoutesElement();
-  return <AppLayout>{element}</AppLayout>;
+  //if(element == )
+  console.log(element.type)
+  return element;
 }
 

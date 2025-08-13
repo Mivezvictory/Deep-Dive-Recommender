@@ -1,10 +1,10 @@
 import { Box, Container, Button, Typography, CssBaseline } from '@mui/material';
+import { useAuth } from '../providers/AuthProvider';
 
 export function LoginPage() {
   //const apiBase = import.meta.env.VITE_API_BASE_URL;
-  const handleLogin = () => {
-    //window.location.href = `${apiBase}/spotify-auth`;
-  };
+  const { login } = useAuth();
+
 
   return (
     <Box
@@ -63,11 +63,13 @@ export function LoginPage() {
           alt="Deep-Dive Logo"
           sx={{ width: { xs: 80, sm: 128 }, mb: 3 }}
         />
-        <Typography variant="h3" fontWeight={700}>Deep-Dive Recommender</Typography>nder
+       <Typography component="h1" variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
+          Deep-Dive Recommender
+        </Typography>
         <Button
           fullWidth
           variant="contained"
-          onClick={handleLogin}
+          onClick={login}
           sx={{
             mt: 1,
             backgroundColor: '#1DB954',

@@ -24,10 +24,7 @@ export const LOGIN_BACKGROUND = {
     flex: 1, 
     p: 2, 
     bgcolor: 'background.default' ,
-     backgroundImage: 'url(/images/bg-image.jpg)', // Path relative to public/
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
+     
 }
 
 export const theme = createTheme({
