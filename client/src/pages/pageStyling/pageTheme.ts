@@ -24,7 +24,7 @@ export const SEMI_TRANSPARENT_OVERLAY = {
 }
 
 export const SINGIN_CARD_STYLING = {
-    Index: 2,
+    zIndex: 2,
     height: '80vh',
     display: 'flex',
     flexDirection: 'column',
