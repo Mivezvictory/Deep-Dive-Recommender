@@ -29,7 +29,7 @@ namespace Deep_Dive_Recommender.FunctionHelpers
             var code = req.Query["code"];
             if (string.IsNullOrWhiteSpace(code))
                 throw new SpotifyCallbackExceptionException("Missing authorization code.");
-            return code;
+            return code!;
         }
 
     }

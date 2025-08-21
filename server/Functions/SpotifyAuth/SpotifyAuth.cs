@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using Deep_Dive_Recommender.Exceptions;
 
 namespace Deep_Dive_Recommender;
 
@@ -23,10 +24,13 @@ public class SpotifyAuth
         {
             //constants
             String? SPOTIFY_REDIRECT_URI = Environment.GetEnvironmentVariable("SPOTIFY_REDIRECT_URI");
-            String SCOPES = "user-top-read playlist-read-private playlist-modify-public";
+            String? SCOPES = Environment.GetEnvironmentVariable("SCOPES");
 
             var cliendID = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
-            var redirectUri = Uri.EscapeDataString(SPOTIFY_REDIRECT_URI!);
+            if (string.IsNullOrEmpty(SPOTIFY_REDIRECT_URI) || string.IsNullOrEmpty(SCOPES))
+                throw new EnvironmentVariableNullException("Please ensure a value is provided for the Environment Variables SPOTIFY_REDIRECT_URI/SCOPES");
+            
+            var redirectUri = Uri.EscapeDataString(SPOTIFY_REDIRECT_URI);
             var scopes = Uri.EscapeDataString(SCOPES);
 
             var authUrl = $"https://accounts.spotify.com/authorize" +
