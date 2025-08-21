@@ -32,7 +32,7 @@ public class SpotifyCallback
         try
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            var code = FunctionErrorHelpers.Errorhandler(req);//makes sure no errors where thrown by Spotify during the auth process
+            var code = FunctionHelper.GetAuthCode(req);
 
             //retrieve env variables
             var clientId = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
@@ -40,7 +40,7 @@ public class SpotifyCallback
             var redirectUrl = Environment.GetEnvironmentVariable("SPOTIFY_REDIRECT_URI");
             var clientAppUrl = Environment.GetEnvironmentVariable("CLIENT_APP_URL") ?? "https://localhost:5173"; // front-end base
 
-            //Exchange code -> tokens
+            //Exchange Auth code -> tokens(access, refresh etc)
             var form = $"grant_type=authorization_code&code={Uri.EscapeDataString(code)}&redirect_uri={Uri.EscapeDataString(redirectUrl)}";
             var reqMsg = new HttpRequestMessage(HttpMethod.Post, "https://accounts.spotify.com/api/token");
             reqMsg.Content = new StringContent(form, Encoding.UTF8, "application/x-www-form-urlencoded");
@@ -49,6 +49,7 @@ public class SpotifyCallback
 
             var tokenResp = await _http.SendAsync(reqMsg);//get token
             var body = await tokenResp.Content.ReadAsStringAsync();
+
             if (!tokenResp.IsSuccessStatusCode)
             {
                 _logger.LogError("Spotify token exchange failed: {Status} {Body}", tokenResp.StatusCode, body);
@@ -65,8 +66,14 @@ public class SpotifyCallback
                 // TODO: persist tokens (userId, access, refresh, expires) in Cosmos DB
             }
 
-            var state = req.Query["state"];
+            var state = req.Query["state"]; //client side handles state after login
             var dest = FunctionHelper.CombineUrl(clientAppUrl, string.IsNullOrWhiteSpace(state) ? "" : state);
+
+            /*
+            *   TODO: store tokens server-side (e.g., Cosmos) and set a secure httpOnly session cookie; redirect back with no token in the URL.
+            *   Later, the SPA calls your backend, which uses the session to look up tokens.
+            *   Reasons/Pros : using cookies/sessions: the page just renders; the client doesn’t ever see the raw token.
+            */
 
             var redirect = $"{dest}?token={Uri.EscapeDataString(tokens.AccessToken)}";
             return new RedirectResult(redirect, permanent: false);

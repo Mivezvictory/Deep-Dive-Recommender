@@ -23,7 +23,7 @@ public class SpotifyAuth
         {
             //constants
             String? SPOTIFY_REDIRECT_URI = Environment.GetEnvironmentVariable("SPOTIFY_REDIRECT_URI");
-            String SCOPES = "user-top-read playlist-read-private";
+            String SCOPES = "user-top-read playlist-read-private playlist-modify-public";
 
             var cliendID = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
             var redirectUri = Uri.EscapeDataString(SPOTIFY_REDIRECT_URI!);
