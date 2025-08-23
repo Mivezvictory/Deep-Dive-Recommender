@@ -9,7 +9,7 @@ namespace Deep_Dive_Recommender.Spotify
         {
             PropertyNameCaseInsensitive = true
         };
-        public static async Task<T> GetJson<T>(string url, string token, string method, ILogger logger)
+        public static async Task<T> GetSpotifyResponseJson<T>(string url, string token, string method, ILogger logger)
         {
             using var req = new HttpRequestMessage(GetHttpMethod(method), url);
             req.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(

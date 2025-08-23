@@ -28,6 +28,7 @@ namespace Deep_Dive_Recommender
                 string token;
                 var artistId = DeepDiveHelper.GetArtistIDFromQuery(req);
                 //var token = DeepDiveHelper.GetTokenFromQuery(req);
+                //TODO: Remove lines 32 - 35 and uncomment line 30
                 if (Environment.GetEnvironmentVariable("AZURE_FUNCTION_ENVIRONMENT") == "development")
                     token = Environment.GetEnvironmentVariable("TOKEN");
                 else

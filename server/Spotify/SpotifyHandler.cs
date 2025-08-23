@@ -23,7 +23,7 @@ namespace Deep_Dive_Recommender.Spotify
 
             while (!string.IsNullOrEmpty(url))
             {
-                var root = await SpotifyHandlerHelper.GetJson<AlbumPage>(url!, _token, "get", _logger);
+                var root = await SpotifyHandlerHelper.GetSpotifyResponseJson<AlbumPage>(url!, _token, "get", _logger);
                 if (root?.Items != null)
                 {
                     results.AddRange(root.Items.Select(AlbumSimplified.From));
